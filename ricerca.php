@@ -14,20 +14,23 @@ include("accesso_db.php");
     $result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {
-		
 		$row = $result->fetch_assoc();
-		$nome = $row['Nome'];
-		$cognome = $row['Cognome'];
-		$codice = $row['Codice'];
-		$gruppo = $row['Gruppo'];
-		$cabina = $row['Cabina'];
 		
-		echo "{nome:$nome, cognome:$cognome,  codice:$codice, gruppo:$gruppo, cabina:$cabina}";
+		$userData = array(
+		"codice" => $row["Codice"],
+		"nome"	=> $row["Nome"],
+		"cognome"	=> $row["Cognome"],
+		"gruppo" => $row["Gruppo"],
+		"cabina" => $row["Cabina"],
+		"ce" => "SI"
+		);
 		
 	} else {
-		echo "{messaggio:\"Nessun risultato per questa ricerca\"}";
+		$userData = array(
+		"ce" => "NO"
+		);
 	}
-
+	echo json_encode($userData);
     $conn->close();
 
 ?>
