@@ -25,12 +25,12 @@ include("accesso_db.php");
 		"ce" => "SI"
 		);
 		
-	} else {
+	} 
+	else {
 		$userData = array(
 		"ce" => "NO"
 		);
 	}
 	echo json_encode($userData);
     $conn->close();
-
 ?>
